@@ -281,6 +281,63 @@
         </div>
       </div>
     </div>
+
+    <!-- DECORACIÓN LATERAL: Lluvia de pétalos y corazones -->
+    <style>
+        .petalo-cae {
+            background: linear-gradient(180deg, #fef08a 0%, #eab308 100%);
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+        .elemento-flotante {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1; /* Se mantiene detrás de las flores principales */
+            opacity: 0;
+        }
+        @keyframes caida-lateral {
+            0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(110vh) rotate(360deg) translateX(40px); opacity: 0; }
+        }
+    </style>
+    
+    <script>
+        function crearMagiaLateral() {
+            const cantidad = 35; // Cantidad de elementos cayendo
+            for (let i = 0; i < cantidad; i++) {
+                let el = document.createElement('div');
+                el.classList.add('elemento-flotante');
+                
+                // Alternar entre corazones amarillos y pétalos
+                let esCorazon = Math.random() > 0.5;
+                if (esCorazon) {
+                    el.innerHTML = '💛';
+                    el.style.fontSize = (12 + Math.random() * 14) + 'px';
+                    el.style.filter = 'drop-shadow(0 0 8px rgba(255, 215, 0, 0.8))';
+                } else {
+                    el.classList.add('petalo-cae');
+                    let ancho = 8 + Math.random() * 7;
+                    el.style.width = ancho + 'px';
+                    el.style.height = (ancho * 2.5) + 'px';
+                }
+                
+                // Distribuir estrictamente en los bordes: 0-20% (izq) o 80-100% (der)
+                let enIzquierda = Math.random() > 0.5;
+                el.style.left = enIzquierda ? (Math.random() * 20) + 'vw' : (80 + Math.random() * 20) + 'vw';
+                
+                // Tiempos aleatorios para un efecto de caída natural y asimétrica
+                el.style.animation = `caida-lateral ${8 + Math.random() * 12}s linear infinite`;
+                el.style.animationDelay = (Math.random() * 15) + 's';
+                
+                document.body.appendChild(el);
+            }
+        }
+        // Iniciar la animación en cuanto cargue la página
+        window.addEventListener('DOMContentLoaded', crearMagiaLateral);
+    </script>
     <script src="main.js"></script>
   </body>
 </html>
+
