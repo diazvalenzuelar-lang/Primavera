@@ -4,36 +4,111 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Enlaces originales base -->
     <link rel="stylesheet" href="DATOS/css/style.css">
     <link rel="icon" href="DATOS/img/flowers.png" type="image/x-icon">
-    <title>FLORES</title>
+    <title>FLORES PARA TI</title>
+    
+    <!-- Importación de la fuente divertida -->
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Fondo lila y alineación central */
+        body {
+            background-color: #d8b4e2 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            min-height: 100vh !important;
+            margin: 0;
+        }
+        
+        /* Letras HOLA */
+        .greetings {
+            font-family: 'Chewy', cursive !important;
+            color: #4a154b !important;
+            font-size: 1.5rem !important;
+            text-shadow: 2px 2px 8px rgba(255,255,255,0.8) !important;
+            margin-top: 0 !important;
+            position: static !important;
+            transform: none !important;
+        }
+        .greetings span {
+            font-family: 'Chewy', cursive !important;
+            color: inherit !important;
+        }
+        
+        /* Letras SON PARA TI */
+        .description {
+            font-family: 'Chewy', cursive !important;
+            color: #ff007f !important;
+            font-size: 2.2rem !important;
+            margin-top: 20px !important;
+            text-shadow: 2px 2px 5px rgba(255,255,255,0.7) !important;
+            position: static !important;
+            transform: none !important;
+        }
+        .description span {
+            font-family: 'Chewy', cursive !important;
+        }
+        
+        /* Animación de la imagen */
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        
+        /* Botón */
+        .button {
+            position: static !important;
+            transform: none !important;
+            margin-top: 30px !important;
+        }
+        .button button {
+            font-family: 'Chewy', cursive !important;
+            font-size: 1.6rem !important;
+            border-radius: 30px !important;
+            padding: 12px 35px !important;
+            background-color: #ffff00 !important;
+            color: #000 !important;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
+            transition: transform 0.2s !important;
+            cursor: pointer;
+            border: 2px solid #000;
+        }
+        .button button:hover {
+            transform: scale(1.1) !important;
+        }
+        .button a {
+            color: #000 !important;
+            text-decoration: none !important;
+        }
+    </style>
 </head>
 <body>
-    <div style="text-align: center; margin-top: 5vh; position: relative; z-index: 10;">
-        <img src="Kuromi.png" alt="Kuromi" style="width: 220px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));">
-    </div>
+    
+    <!-- Texto Inicial -->
     <div class="greetings">
+        <span>H</span><span>O</span><span>L</span><span>A</span>
+    </div>
 
-        <span>H</span>
-        <span>O</span>
-        <span>L</span>
-        <span>A</span>
+    <!-- Imagen de Kuromi con la ruta corregida a DATOS/Kuromi.png -->
+    <div style="text-align: center; margin: 15px 0; z-index: 10;">
+        <img src="DATOS/Kuromi.png" alt="Kuromi" style="width: 240px; animation: flotar 3s infinite ease-in-out; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));">
     </div>
-    <div class="greetings">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+
+    <!-- Texto Secundario -->
     <div class="description">
-        <span>SON PARA TI <3</span>
+        <span>SON PARA TI &lt;3</span>
     </div>
+    
+    <!-- Botón hacia el jardín de flores -->
     <div class="button">
         <button>
             <a href="DATOS/FLORES.html">CLICK PLEASE</a>
         </button>
     </div>
+
 </body>
 </html>
