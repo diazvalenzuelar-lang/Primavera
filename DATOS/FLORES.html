@@ -7,26 +7,49 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="icon" href="img/flowers.png" type="image/x-icon">
     <title>FLORES</title>
+    
+    <style>
+        /* Animaciones para la pantalla de desbloqueo */
+        @keyframes latido-texto {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes flotar-regalo {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
 </head>
 
 <body class="container">
+
+    <!-- PANTALLA DE INTERACCIÓN (Obligatoria para reproducir música en celulares) -->
+    <div id="pantalla-desbloqueo" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(2, 12, 27, 0.9); z-index: 999999; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; transition: opacity 1s ease;">
+        <div style="font-size: 5rem; margin-bottom: 20px; animation: flotar-regalo 2s infinite ease-in-out;">🎁</div>
+        <p style="color: #ffd700; font-family: 'Segoe UI', sans-serif; font-size: 1.5rem; font-weight: bold; text-align: center; padding: 0 30px; animation: latido-texto 1.5s infinite;">¡Toca la pantalla para descubrir tu sorpresa!</p>
+    </div>
+
     <!-- Dedicatoria superpuesta a las flores -->
     <div style="position: absolute; top: 8%; left: 0; width: 100%; text-align: center; z-index: 9999; pointer-events: none;">
         <p style="color: #ffd700; font-family: 'Segoe UI', system-ui, sans-serif; font-size: 1.25rem; font-style: italic; font-weight: bold; text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 2px 2px 4px rgba(0,0,0,0.9); max-width: 90%; margin: 0 auto; line-height: 1.5;">
             “¡Sorpresa! 🌻 Flores amarillas para alguien especial. Innovando en formato digital que estas al menos no se marchitan y te van a sacar una sonrisa todo el dia"😉
         </p>
     </div>
-    <audio src="/DATOS/img/Floricienta.mp3" autoplay loop>
-    Tu navegador no soporta el elemento de audio.
+    
+    <!-- Audio corregido: Prueba ambas rutas por si lo subiste a la raíz o a la carpeta img -->
+    <audio id="musica-fondo" loop>
+        <source src="../floricienta.mp3" type="audio/mpeg">
+        <source src="img/Floricienta.mp3" type="audio/mpeg">
     </audio>
     
     <div class="night"></div>
     
-    <!-- NUEVO: Estrellas Fugaces -->
+    <!-- Estrellas Fugaces -->
     <div class="estrella-fugaz estrella-1"></div>
     <div class="estrella-fugaz estrella-2"></div>
 
     <div class="flowers">
+      <!-- (Se mantienen exactamente todas tus flores y pastos originales) -->
       <div class="flower flower--1">
         <div class="flower__leafs flower__leafs--1">
           <div class="flower__leaf flower__leaf--1"></div>
@@ -34,7 +57,6 @@
           <div class="flower__leaf flower__leaf--3"></div>
           <div class="flower__leaf flower__leaf--4"></div>
           <div class="flower__white-circle"></div>
-  
           <div class="flower__light flower__light--1"></div>
           <div class="flower__light flower__light--2"></div>
           <div class="flower__light flower__light--3"></div>
@@ -61,7 +83,6 @@
           <div class="flower__leaf flower__leaf--3"></div>
           <div class="flower__leaf flower__leaf--4"></div>
           <div class="flower__white-circle"></div>
-  
           <div class="flower__light flower__light--1"></div>
           <div class="flower__light flower__light--2"></div>
           <div class="flower__light flower__light--3"></div>
@@ -86,7 +107,6 @@
           <div class="flower__leaf flower__leaf--3"></div>
           <div class="flower__leaf flower__leaf--4"></div>
           <div class="flower__white-circle"></div>
-  
           <div class="flower__light flower__light--1"></div>
           <div class="flower__light flower__light--2"></div>
           <div class="flower__light flower__light--3"></div>
@@ -111,7 +131,6 @@
           <div class="flower__leaf flower__leaf--3"></div>
           <div class="flower__leaf flower__leaf--4"></div>
           <div class="flower__white-circle"></div>
-  
           <div class="flower__light flower__light--1"></div>
           <div class="flower__light flower__light--2"></div>
           <div class="flower__light flower__light--3"></div>
@@ -167,179 +186,86 @@
       </div>
   
       <div class="long-g long-g--0">
-        <div class="grow-ans" style="--d:3s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d:2.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.4s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="grow-ans" style="--d:3s"><div class="leaf leaf--0"></div></div>
+        <div class="grow-ans" style="--d:2.2s"><div class="leaf leaf--1"></div></div>
+        <div class="grow-ans" style="--d:3.4s"><div class="leaf leaf--2"></div></div>
+        <div class="grow-ans" style="--d:3.6s"><div class="leaf leaf--3"></div></div>
       </div>
   
       <div class="long-g long-g--1">
-        <div class="grow-ans" style="--d:3.6s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.8s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d:4s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.2s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="grow-ans" style="--d:3.6s"><div class="leaf leaf--0"></div></div>
+        <div class="grow-ans" style="--d:3.8s"><div class="leaf leaf--1"></div></div>
+        <div class="grow-ans" style="--d:4s"><div class="leaf leaf--2"></div></div>
+        <div class="grow-ans" style="--d:4.2s"><div class="leaf leaf--3"></div></div>
       </div>
   
       <div class="long-g long-g--2">
-        <div class="grow-ans" style="--d:4s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.4s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="grow-ans" style="--d:4s"><div class="leaf leaf--0"></div></div>
+        <div class="grow-ans" style="--d:4.2s"><div class="leaf leaf--1"></div></div>
+        <div class="grow-ans" style="--d:4.4s"><div class="leaf leaf--2"></div></div>
+        <div class="grow-ans" style="--d:4.6s"><div class="leaf leaf--3"></div></div>
       </div>
   
       <div class="long-g long-g--3">
-        <div class="grow-ans" style="--d:4s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d:3s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="grow-ans" style="--d:4s"><div class="leaf leaf--0"></div></div>
+        <div class="grow-ans" style="--d:4.2s"><div class="leaf leaf--1"></div></div>
+        <div class="grow-ans" style="--d:3s"><div class="leaf leaf--2"></div></div>
+        <div class="grow-ans" style="--d:3.6s"><div class="leaf leaf--3"></div></div>
       </div>
   
       <div class="long-g long-g--4">
-        <div class="grow-ans" style="--d:4s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d:3s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="grow-ans" style="--d:4s"><div class="leaf leaf--0"></div></div>
+        <div class="grow-ans" style="--d:4.2s"><div class="leaf leaf--1"></div></div>
+        <div class="grow-ans" style="--d:3s"><div class="leaf leaf--2"></div></div>
+        <div class="grow-ans" style="--d:3.6s"><div class="leaf leaf--3"></div></div>
       </div>
   
       <div class="long-g long-g--5">
-        <div class="grow-ans" style="--d:4s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d:3s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="grow-ans" style="--d:4s"><div class="leaf leaf--0"></div></div>
+        <div class="grow-ans" style="--d:4.2s"><div class="leaf leaf--1"></div></div>
+        <div class="grow-ans" style="--d:3s"><div class="leaf leaf--2"></div></div>
+        <div class="grow-ans" style="--d:3.6s"><div class="leaf leaf--3"></div></div>
       </div>
   
       <div class="long-g long-g--6">
-        <div class="grow-ans" style="--d:4.2s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.4s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.6s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.8s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="grow-ans" style="--d:4.2s"><div class="leaf leaf--0"></div></div>
+        <div class="grow-ans" style="--d:4.4s"><div class="leaf leaf--1"></div></div>
+        <div class="grow-ans" style="--d:4.6s"><div class="leaf leaf--2"></div></div>
+        <div class="grow-ans" style="--d:4.8s"><div class="leaf leaf--3"></div></div>
       </div>
   
       <div class="long-g long-g--7">
-        <div class="grow-ans" style="--d:3s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.5s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="grow-ans" style="--d:3s"><div class="leaf leaf--0"></div></div>
+        <div class="grow-ans" style="--d:3.2s"><div class="leaf leaf--1"></div></div>
+        <div class="grow-ans" style="--d:3.5s"><div class="leaf leaf--2"></div></div>
+        <div class="grow-ans" style="--d:3.6s"><div class="leaf leaf--3"></div></div>
       </div>
     </div>
 
     <!-- DECORACIÓN: Estrellas fugaces, pétalos y corazones -->
     <style>
-        /* Estilos de las estrellas fugaces */
         .estrella-fugaz {
-            position: absolute;
-            width: 150px;
-            height: 2px;
-            /* La cabeza de la estrella es blanca y deja una estela transparente */
+            position: absolute; width: 150px; height: 2px;
             background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-            transform: rotate(-45deg);
-            z-index: 5;
-            opacity: 0;
-            pointer-events: none;
+            transform: rotate(-45deg); z-index: 5; opacity: 0; pointer-events: none;
         }
         .estrella-fugaz::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: 0; /* La cabeza brillante */
-            width: 6px;
-            height: 6px;
-            background: #fff;
-            border-radius: 50%;
+            content: ''; position: absolute; top: -2px; left: 0;
+            width: 6px; height: 6px; background: #fff; border-radius: 50%;
             box-shadow: 0 0 10px #fff, 0 0 20px #fff;
         }
-        .estrella-1 {
-            top: 10%;
-            right: 15%;
-            animation: fugaz 6s linear infinite 1s;
-        }
-        .estrella-2 {
-            top: 25%;
-            right: 35%;
-            animation: fugaz 9s linear infinite 5s;
-        }
+        .estrella-1 { top: 10%; right: 15%; animation: fugaz 6s linear infinite 1s; }
+        .estrella-2 { top: 25%; right: 35%; animation: fugaz 9s linear infinite 5s; }
         @keyframes fugaz {
             0% { transform: rotate(-45deg) translateX(0); opacity: 1; }
             15% { transform: rotate(-45deg) translateX(-400px); opacity: 0; }
             100% { opacity: 0; }
         }
-
-        /* Estilos de la lluvia de pétalos */
         .petalo-cae {
             background: linear-gradient(180deg, #fef08a 0%, #eab308 100%);
-            border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            border-radius: 50% 50% 20% 20%; box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
         }
-        .elemento-flotante {
-            position: fixed;
-            pointer-events: none;
-            z-index: 1; 
-            opacity: 0;
-        }
+        .elemento-flotante { position: fixed; pointer-events: none; z-index: 1; opacity: 0; }
         @keyframes caida-general {
             0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
             10% { opacity: 0.6; }
@@ -349,13 +275,25 @@
     </style>
     
     <script>
+        // SCRIPT 1: Reproducir música y ocultar pantalla de desbloqueo al tocar
+        document.getElementById('pantalla-desbloqueo').addEventListener('click', function() {
+            const audio = document.getElementById('musica-fondo');
+            // Al hacer clic, forzamos la reproducción del audio
+            audio.play().catch(error => console.log('El audio no pudo iniciar:', error));
+            
+            // Ocultamos la pantalla negra con un efecto suave
+            this.style.opacity = '0';
+            setTimeout(() => {
+                this.style.display = 'none';
+            }, 1000);
+        });
+
+        // SCRIPT 2: Magia de lluvia de corazones y pétalos
         function crearMagiaExpandida() {
-            const cantidad = 60; // Aumentamos la cantidad para que llene la pantalla
+            const cantidad = 60;
             for (let i = 0; i < cantidad; i++) {
                 let el = document.createElement('div');
                 el.classList.add('elemento-flotante');
-                
-                // Alternar entre corazones amarillos y pétalos
                 let esCorazon = Math.random() > 0.5;
                 if (esCorazon) {
                     el.innerHTML = '💛';
@@ -367,14 +305,9 @@
                     el.style.width = ancho + 'px';
                     el.style.height = (ancho * 2.5) + 'px';
                 }
-                
-                // Ahora abarcan el 100% del ancho de la pantalla
                 el.style.left = (Math.random() * 100) + 'vw';
-                
-                // Tiempos aleatorios para un efecto de caída natural
                 el.style.animation = `caida-general ${7 + Math.random() * 10}s linear infinite`;
                 el.style.animationDelay = (Math.random() * 15) + 's';
-                
                 document.body.appendChild(el);
             }
         }
@@ -383,5 +316,3 @@
     <script src="main.js"></script>
   </body>
 </html>
-
-
