@@ -13,13 +13,19 @@
     <!-- Dedicatoria superpuesta a las flores -->
     <div style="position: absolute; top: 8%; left: 0; width: 100%; text-align: center; z-index: 9999; pointer-events: none;">
         <p style="color: #ffd700; font-family: 'Segoe UI', system-ui, sans-serif; font-size: 1.25rem; font-style: italic; font-weight: bold; text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 2px 2px 4px rgba(0,0,0,0.9); max-width: 90%; margin: 0 auto; line-height: 1.5;">
-            “¡Sorpresa! 🌻 Flores amarillas para alguien especial. Innovando en formato formato digital que estas al menos no se marchitan y te van a sacar una sonrisa todo el dia"😉
+            “¡Sorpresa! 🌻 Flores amarillas para alguien especial. Innovando en formato digital que estas al menos no se marchitan y te van a sacar una sonrisa todo el dia"😉
         </p>
     </div>
     <audio src="/DATOS/img/Floricienta.mp3" autoplay loop>
     Tu navegador no soporta el elemento de audio.
     </audio>
+    
     <div class="night"></div>
+    
+    <!-- NUEVO: Estrellas Fugaces -->
+    <div class="estrella-fugaz estrella-1"></div>
+    <div class="estrella-fugaz estrella-2"></div>
+
     <div class="flowers">
       <div class="flower flower--1">
         <div class="flower__leafs flower__leafs--1">
@@ -98,7 +104,6 @@
         </div>
       </div>
 
-      <!-- Nueva flor añadida -->
       <div class="flower flower--4">
         <div class="flower__leafs flower__leafs--4">
           <div class="flower__leaf flower__leaf--1"></div>
@@ -282,8 +287,48 @@
       </div>
     </div>
 
-    <!-- DECORACIÓN LATERAL: Lluvia de pétalos y corazones -->
+    <!-- DECORACIÓN: Estrellas fugaces, pétalos y corazones -->
     <style>
+        /* Estilos de las estrellas fugaces */
+        .estrella-fugaz {
+            position: absolute;
+            width: 150px;
+            height: 2px;
+            /* La cabeza de la estrella es blanca y deja una estela transparente */
+            background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+            transform: rotate(-45deg);
+            z-index: 5;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .estrella-fugaz::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 0; /* La cabeza brillante */
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+        }
+        .estrella-1 {
+            top: 10%;
+            right: 15%;
+            animation: fugaz 6s linear infinite 1s;
+        }
+        .estrella-2 {
+            top: 25%;
+            right: 35%;
+            animation: fugaz 9s linear infinite 5s;
+        }
+        @keyframes fugaz {
+            0% { transform: rotate(-45deg) translateX(0); opacity: 1; }
+            15% { transform: rotate(-45deg) translateX(-400px); opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* Estilos de la lluvia de pétalos */
         .petalo-cae {
             background: linear-gradient(180deg, #fef08a 0%, #eab308 100%);
             border-radius: 50% 50% 20% 20%;
@@ -292,10 +337,10 @@
         .elemento-flotante {
             position: fixed;
             pointer-events: none;
-            z-index: 1; /* Se mantiene detrás de las flores principales */
+            z-index: 1; 
             opacity: 0;
         }
-        @keyframes caida-lateral {
+        @keyframes caida-general {
             0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
             10% { opacity: 0.6; }
             90% { opacity: 0.6; }
@@ -304,8 +349,8 @@
     </style>
     
     <script>
-        function crearMagiaLateral() {
-            const cantidad = 35; // Cantidad de elementos cayendo
+        function crearMagiaExpandida() {
+            const cantidad = 60; // Aumentamos la cantidad para que llene la pantalla
             for (let i = 0; i < cantidad; i++) {
                 let el = document.createElement('div');
                 el.classList.add('elemento-flotante');
@@ -314,30 +359,29 @@
                 let esCorazon = Math.random() > 0.5;
                 if (esCorazon) {
                     el.innerHTML = '💛';
-                    el.style.fontSize = (12 + Math.random() * 14) + 'px';
+                    el.style.fontSize = (10 + Math.random() * 15) + 'px';
                     el.style.filter = 'drop-shadow(0 0 8px rgba(255, 215, 0, 0.8))';
                 } else {
                     el.classList.add('petalo-cae');
-                    let ancho = 8 + Math.random() * 7;
+                    let ancho = 6 + Math.random() * 8;
                     el.style.width = ancho + 'px';
                     el.style.height = (ancho * 2.5) + 'px';
                 }
                 
-                // Distribuir estrictamente en los bordes: 0-20% (izq) o 80-100% (der)
-                let enIzquierda = Math.random() > 0.5;
-                el.style.left = enIzquierda ? (Math.random() * 20) + 'vw' : (80 + Math.random() * 20) + 'vw';
+                // Ahora abarcan el 100% del ancho de la pantalla
+                el.style.left = (Math.random() * 100) + 'vw';
                 
-                // Tiempos aleatorios para un efecto de caída natural y asimétrica
-                el.style.animation = `caida-lateral ${8 + Math.random() * 12}s linear infinite`;
+                // Tiempos aleatorios para un efecto de caída natural
+                el.style.animation = `caida-general ${7 + Math.random() * 10}s linear infinite`;
                 el.style.animationDelay = (Math.random() * 15) + 's';
                 
                 document.body.appendChild(el);
             }
         }
-        // Iniciar la animación en cuanto cargue la página
-        window.addEventListener('DOMContentLoaded', crearMagiaLateral);
+        window.addEventListener('DOMContentLoaded', crearMagiaExpandida);
     </script>
     <script src="main.js"></script>
   </body>
 </html>
+
 
