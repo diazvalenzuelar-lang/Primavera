@@ -1,19 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Enlaces originales base -->
-    <link rel="stylesheet" href="DATOS/css/style.css">
-    <link rel="icon" href="DATOS/img/flowers.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FLORES PARA TI</title>
     
-    <!-- Importación de las fuentes: Chewy (divertida) y Quicksand (para un botón limpio) -->
+    <!-- Fuentes: Chewy y Quicksand -->
     <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Quicksand:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        /* Fondo lila y alineación central perfecta */
+        /* Fondo lila y alineación central */
         body {
             background-color: #d8b4e2 !important;
             display: flex !important;
@@ -22,80 +19,127 @@
             justify-content: center !important;
             min-height: 100vh !important;
             margin: 0;
-            gap: 25px; /* Espaciado uniforme entre los elementos */
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent; /* Quita el cuadro azul al tocar en móviles */
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            z-index: 10;
         }
         
         /* Letras HOLA */
         .greetings {
             font-family: 'Chewy', cursive !important;
             color: #4a154b !important;
-            font-size: 4.5rem !important; /* Más grande y llamativo */
+            font-size: 4.5rem !important;
             margin: 0 !important;
             letter-spacing: 5px !important;
-            text-shadow: 4px 4px 0px rgba(255, 255, 255, 0.7) !important; /* Sombra tipo sticker */
+            text-shadow: 4px 4px 0px rgba(255, 255, 255, 0.7) !important;
             animation: fadeInDown 1s ease-out;
         }
         
-        /* Contenedor e imagen de Kuromi */
-        .image-wrapper {
+        /* === NUEVO DISEÑO PARA KUROMI === */
+        .image-link {
             position: relative;
-            animation: flotar 3s infinite ease-in-out;
-            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            animation: flotar 3.5s infinite ease-in-out;
+            transition: transform 0.2s ease;
         }
-        .image-wrapper img {
-            width: 250px;
-            /* TRUCO PRO: Elimina el fondo blanco de tu imagen automáticamente */
+        
+        /* Efecto al tocar la imagen en el celular */
+        .image-link:active {
+            transform: scale(0.92);
+        }
+
+        /* Aura luminosa detrás de la imagen */
+        .image-link::before {
+            content: '';
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulso-luz 2.5s infinite ease-in-out;
+        }
+
+        /* Detalles decorativos (estrellas/destellos CSS) */
+        .decoracion {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #ffff00;
+            text-shadow: 0 0 8px rgba(255, 255, 0, 0.8);
+            animation: titilar 2s infinite alternate;
+            pointer-events: none;
+        }
+        .dec-1 { top: 10px; left: -10px; font-size: 1.2rem; animation-delay: 0.5s; }
+        .dec-2 { bottom: 20px; right: -20px; font-size: 1.8rem; animation-delay: 1s; }
+
+        .image-link img {
+            width: 260px;
             mix-blend-mode: multiply; 
             filter: contrast(1.05);
+            z-index: 2;
         }
         
         /* Letras SON PARA TI */
         .description {
             font-family: 'Chewy', cursive !important;
             color: #ff007f !important;
-            font-size: 2.5rem !important;
+            font-size: 2.2rem !important;
             margin: 0 !important;
             letter-spacing: 2px !important;
             text-shadow: 3px 3px 0px rgba(255, 255, 255, 0.7) !important;
             animation: fadeInUp 1s ease-out 0.3s backwards;
         }
         
-        /* Botón interactivo profesional */
+        /* Botón interactivo */
         .btn-action {
             font-family: 'Quicksand', sans-serif !important;
             background-color: #ffff00 !important;
             color: #2d0d2e !important;
-            font-size: 1.3rem !important;
+            font-size: 1.25rem !important;
             font-weight: 700 !important;
-            padding: 16px 45px !important;
+            padding: 15px 40px !important;
             border-radius: 50px !important;
             border: 3px solid #2d0d2e !important;
             text-decoration: none !important;
-            /* Sombra dura estilo diseño moderno de apps */
             box-shadow: 5px 6px 0px #2d0d2e !important; 
             transition: all 0.2s ease !important;
-            margin-top: 10px !important;
+            margin-top: 15px !important;
             animation: fadeInUp 1s ease-out 0.6s backwards;
-            -webkit-tap-highlight-color: transparent;
             display: inline-block;
         }
         
-        /* Efecto al pasar el dedo/mouse */
         .btn-action:hover {
             transform: translate(-2px, -2px) !important;
             box-shadow: 7px 8px 0px #2d0d2e !important;
         }
         
-        /* Efecto de hundimiento al hacer clic */
         .btn-action:active {
             transform: translate(5px, 6px) !important;
             box-shadow: 0px 0px 0px #2d0d2e !important;
         }
         
-        /* Animaciones base */
+        /* Animaciones clave */
         @keyframes flotar {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-12px); }
+        }
+        @keyframes pulso-luz {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.15); opacity: 1; }
+        }
+        @keyframes titilar {
+            0% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+            100% { opacity: 1; transform: scale(1.2) rotate(15deg); }
         }
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-30px); }
@@ -109,22 +153,27 @@
 </head>
 <body>
     
-    <!-- Texto Inicial -->
-    <h1 class="greetings">HOLA</h1>
+    <div class="container">
+        <!-- Texto Inicial -->
+        <h1 class="greetings">HOLA</h1>
 
-    <!-- Imagen de Kuromi con transparencia aplicada -->
-    <div class="image-wrapper">
-        <img src="DATOS/Kuromi.png" alt="Kuromi">
+        <!-- Kuromi interactiva con diseño integrado -->
+        <a href="DATOS/FLORES.html" class="image-link">
+            <!-- Aura decorativa -->
+            <span class="decoracion dec-1">✨</span>
+            <span class="decoracion dec-2">✨</span>
+            
+            <img src="DATOS/Kuromi.png" alt="Kuromi">
+        </a>
+
+        <!-- Texto Secundario -->
+        <h2 class="description">SON PARA TI &lt;3</h2>
+        
+        <!-- Botón clásico -->
+        <a href="DATOS/FLORES.html" class="btn-action">CLICK PLEASE</a>
     </div>
-
-    <!-- Texto Secundario -->
-    <h2 class="description">SON PARA TI &lt;3</h2>
-    
-    <!-- Botón hacia el jardín de flores (Estructura HTML corregida) -->
-    <a href="DATOS/FLORES.html" class="btn-action">CLICK PLEASE</a>
 
 </body>
 </html>
-
 
 
